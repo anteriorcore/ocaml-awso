@@ -15,7 +15,7 @@ open! Import
       - Then each config parameter is set to the first value found in the
       following order: corresponding argument to this function, corresponding
       environment variable (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY,
-      AWS_SESSION_TOKEN, and AWS_DEFAULT_REGION), or value from the profile
+      AWS_SESSION_TOKEN, and AWS_REGION), or value from the profile
       found above. *)
 val get
   :  ?profile:string

@@ -615,7 +615,7 @@ let make_internal
     List.reduce_exn
       ~f:Option.first_some
       [ region
-      ; (match Sys.getenv_opt "AWS_DEFAULT_REGION" with
+      ; (match Sys.getenv_opt "AWS_REGION" with
          | None -> None
          | Some x -> Some (Region.of_string x))
       ; config_profile.region
