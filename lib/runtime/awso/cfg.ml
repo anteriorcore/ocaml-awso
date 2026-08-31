@@ -606,7 +606,11 @@ let make_internal
       ; config_profile.aws_secret_access_key
       ]
   in
-  let aws_session_token = config_profile.aws_session_token in
+  let aws_session_token =
+    List.reduce_exn
+      ~f:Option.first_some
+      [ Sys.getenv_opt "AWS_SESSION_TOKEN"; config_profile.aws_session_token ]
+  in
   let region =
     List.reduce_exn
       ~f:Option.first_some
