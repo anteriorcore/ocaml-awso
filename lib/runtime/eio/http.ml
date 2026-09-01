@@ -53,7 +53,7 @@ module Io = struct
       | None -> failwith "config must set 'region'"
     in
     let endpoint =
-      match endpoint_url with
+      match Option.first_some endpoint_url aws_cfg.endpoint_url with
       | Some s -> Uri.of_string s
       | None -> Awso.Botocore_endpoints.lookup_uri ~region service `HTTPS
     in

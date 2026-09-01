@@ -45,6 +45,7 @@ type t =
   ; credential_process : string option
   ; credential_source : string option
   ; duration_seconds : string option
+  ; endpoint_url : string option
   ; external_id : string option
   ; max_attempts : string option
   ; mfa_serial : string option

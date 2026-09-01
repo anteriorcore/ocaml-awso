@@ -196,6 +196,7 @@ module Config_file_stanza = struct
     ; credential_process : string option
     ; credential_source : string option
     ; duration_seconds : string option
+    ; endpoint_url : string option
     ; external_id : string option
     ; max_attempts : string option
     ; mfa_serial : string option
@@ -229,6 +230,7 @@ module Config_file_stanza = struct
     ; credential_process = None
     ; credential_source = None
     ; duration_seconds = None
+    ; endpoint_url = None
     ; external_id = None
     ; max_attempts = None
     ; mfa_serial = None
@@ -291,6 +293,7 @@ module Config_file_stanza = struct
         | "credential_process" -> { profile with credential_process = Some value }
         | "credential_source" -> { profile with credential_source = Some value }
         | "duration_seconds" -> { profile with duration_seconds = Some value }
+        | "endpoint_url" -> { profile with endpoint_url = Some value }
         | "external_id" -> { profile with external_id = Some value }
         | "max_attempts" -> { profile with max_attempts = Some value }
         | "mfa_serial" -> { profile with mfa_serial = Some value }
@@ -338,6 +341,7 @@ region=us-west-2
 output=json
 aws_access_key_id=AKIAIOSFODNN7EXAMPLE
 aws_secret_access_key=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+endpoint_url=http://localhost:8000
 [profile other_profile]
 region=us-east-1
 |};
@@ -359,6 +363,7 @@ region=us-east-1
         "credential_process": null,
         "credential_source": null,
         "duration_seconds": null,
+        "endpoint_url": "http://localhost:8000",
         "external_id": null,
         "max_attempts": null,
         "mfa_serial": null,
@@ -511,6 +516,7 @@ let merge ~(from : Config_file_stanza.t) ~(to_ : Config_file_stanza.t)
   ; credential_process = mv from.credential_process to_.credential_process
   ; credential_source = mv from.credential_source to_.credential_source
   ; duration_seconds = mv from.duration_seconds to_.duration_seconds
+  ; endpoint_url = mv from.endpoint_url to_.endpoint_url
   ; external_id = mv from.external_id to_.external_id
   ; max_attempts = mv from.max_attempts to_.max_attempts
   ; mfa_serial = mv from.mfa_serial to_.mfa_serial
@@ -536,6 +542,7 @@ let make_internal
       ?profile
       ?aws_access_key_id
       ?aws_secret_access_key
+      ?endpoint_url
       ?region
       ?output
       ()
@@ -611,6 +618,11 @@ let make_internal
       ~f:Option.first_some
       [ Sys.getenv_opt "AWS_SESSION_TOKEN"; config_profile.aws_session_token ]
   in
+  let endpoint_url =
+    List.reduce_exn
+      ~f:Option.first_some
+      [ endpoint_url; Sys.getenv_opt "AWS_ENDPOINT_URL"; config_profile.endpoint_url ]
+  in
   let region =
     List.reduce_exn
       ~f:Option.first_some
@@ -627,6 +639,7 @@ let make_internal
       aws_access_key_id
     ; aws_secret_access_key
     ; aws_session_token
+    ; endpoint_url
     ; region
     ; output
     }
@@ -651,6 +664,7 @@ type t =
   ; credential_process : string option
   ; credential_source : string option
   ; duration_seconds : string option
+  ; endpoint_url : string option
   ; external_id : string option
   ; max_attempts : string option
   ; mfa_serial : string option
@@ -684,6 +698,7 @@ let empty =
   ; credential_process = None
   ; credential_source = None
   ; duration_seconds = None
+  ; endpoint_url = None
   ; external_id = None
   ; max_attempts = None
   ; mfa_serial = None
@@ -740,6 +755,7 @@ let make
       ; credential_process = c.credential_process
       ; credential_source = c.credential_source
       ; duration_seconds = c.duration_seconds
+      ; endpoint_url = c.endpoint_url
       ; external_id = c.external_id
       ; max_attempts = c.max_attempts
       ; mfa_serial = c.mfa_serial
@@ -841,6 +857,7 @@ aws_secret_access_key=bbbbbbbbbbbbbbbbbbbbbbb
           "credential_process": null,
           "credential_source": null,
           "duration_seconds": null,
+          "endpoint_url": null,
           "external_id": null,
           "max_attempts": null,
           "mfa_serial": null,
@@ -876,6 +893,7 @@ aws_secret_access_key=bbbbbbbbbbbbbbbbbbbbbbb
           "credential_process": null,
           "credential_source": null,
           "duration_seconds": null,
+          "endpoint_url": null,
           "external_id": null,
           "max_attempts": null,
           "mfa_serial": null,
@@ -914,6 +932,7 @@ aws_secret_access_key=bbbbbbbbbbbbbbbbbbbbbbb
           "credential_process": null,
           "credential_source": null,
           "duration_seconds": null,
+          "endpoint_url": null,
           "external_id": null,
           "max_attempts": null,
           "mfa_serial": null,
@@ -949,6 +968,7 @@ aws_secret_access_key=bbbbbbbbbbbbbbbbbbbbbbb
           "credential_process": null,
           "credential_source": null,
           "duration_seconds": null,
+          "endpoint_url": null,
           "external_id": null,
           "max_attempts": null,
           "mfa_serial": null,
@@ -988,6 +1008,7 @@ aws_secret_access_key=bbbbbbbbbbbbbbbbbbbbbbb
           "credential_process": null,
           "credential_source": null,
           "duration_seconds": null,
+          "endpoint_url": null,
           "external_id": null,
           "max_attempts": null,
           "mfa_serial": null,
