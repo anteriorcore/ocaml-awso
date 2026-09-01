@@ -57,7 +57,7 @@ module Io = struct
       | Some s -> Uri.of_string s
       | None -> Awso.Botocore_endpoints.lookup_uri ~region service `HTTPS
     in
-    let uri = Uri.with_uri ~scheme:(Uri.scheme endpoint) ~host:(Uri.host endpoint) uri in
+    let uri = Uri.resolve "https" endpoint uri in
     let host =
       match Uri.host endpoint with
       | Some h -> h
