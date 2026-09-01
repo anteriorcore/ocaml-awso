@@ -427,7 +427,7 @@ let of_json_converter_of_shape shape_name shape =
   | Double_shape _ -> [%expr fun j -> float_of_json ~kind:"a double" j]
   | Integer_shape _ -> [%expr fun j -> Int.of_float (float_of_json ~kind:"an integer" j)]
   | Float_shape _ -> [%expr fun j -> float_of_json ~kind:"a float" j]
-  | Blob_shape _ -> [%expr fun j -> string_of_json ~kind:"a blob" j]
+  | Blob_shape _ -> [%expr fun j -> blob_of_json ~kind:"a blob" j]
   | Timestamp_shape _ -> [%expr timestamp_of_json]
   | String_shape _ ->
     [%expr fun j -> string_of_json ~kind:[%e Ast_convenience.str shape_name] j]

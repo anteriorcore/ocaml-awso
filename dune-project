@@ -29,6 +29,7 @@
    (>= 5.3.0))
   (awso-common
    (= :version))
+  base64
   (cohttp
    (>= 6.0.0))
   cryptokit

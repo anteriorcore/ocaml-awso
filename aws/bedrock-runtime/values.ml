@@ -825,7 +825,7 @@ module DocumentSourceBytesBlob =
     let to_query v = to_query to_value v
     let to_header x = x
     let of_xml xml_arg0 = string_of_xml ~kind:"a blob" xml_arg0
-    let of_json j = string_of_json ~kind:"a blob" j
+    let of_json j = blob_of_json ~kind:"a blob" j
     let to_json = simple_to_json to_value
   end
 module S3Location =
@@ -864,7 +864,7 @@ module ImageSourceBytesBlob =
     let to_query v = to_query to_value v
     let to_header x = x
     let of_xml xml_arg0 = string_of_xml ~kind:"a blob" xml_arg0
-    let of_json j = string_of_json ~kind:"a blob" j
+    let of_json j = blob_of_json ~kind:"a blob" j
     let to_json = simple_to_json to_value
   end
 module SearchResultContentBlock =
@@ -895,7 +895,7 @@ module VideoSourceBytesBlob =
     let to_query v = to_query to_value v
     let to_header x = x
     let of_xml xml_arg0 = string_of_xml ~kind:"a blob" xml_arg0
-    let of_json j = string_of_json ~kind:"a blob" j
+    let of_json j = blob_of_json ~kind:"a blob" j
     let to_json = simple_to_json to_value
   end
 module GuardrailAutomatedReasoningLogicWarning =
@@ -2570,7 +2570,7 @@ module GuardrailConverseImageSourceBytesBlob =
     let to_query v = to_query to_value v
     let to_header x = x
     let of_xml xml_arg0 = string_of_xml ~kind:"a blob" xml_arg0
-    let of_json j = string_of_json ~kind:"a blob" j
+    let of_json j = blob_of_json ~kind:"a blob" j
     let to_json = simple_to_json to_value
   end
 module GuardrailConverseContentQualifier =
@@ -3516,7 +3516,7 @@ module AudioSourceBytesBlob =
     let to_query v = to_query to_value v
     let to_header x = x
     let of_xml xml_arg0 = string_of_xml ~kind:"a blob" xml_arg0
-    let of_json j = string_of_json ~kind:"a blob" j
+    let of_json j = blob_of_json ~kind:"a blob" j
     let to_json = simple_to_json to_value
   end
 module CitationGeneratedContent =
@@ -4542,7 +4542,7 @@ module Blob =
     let to_query v = to_query to_value v
     let to_header x = x
     let of_xml xml_arg0 = string_of_xml ~kind:"a blob" xml_arg0
-    let of_json j = string_of_json ~kind:"a blob" j
+    let of_json j = blob_of_json ~kind:"a blob" j
     let to_json = simple_to_json to_value
   end
 module ReasoningTextBlock =
@@ -6060,7 +6060,7 @@ module GuardrailImageSourceBytesBlob =
     let to_query v = to_query to_value v
     let to_header x = x
     let of_xml xml_arg0 = string_of_xml ~kind:"a blob" xml_arg0
-    let of_json j = string_of_json ~kind:"a blob" j
+    let of_json j = blob_of_json ~kind:"a blob" j
     let to_json = simple_to_json to_value
   end
 module GuardrailContentQualifier =
@@ -7135,7 +7135,7 @@ module PartBody =
     let to_query v = to_query to_value v
     let to_header x = x
     let of_xml xml_arg0 = string_of_xml ~kind:"a blob" xml_arg0
-    let of_json j = string_of_json ~kind:"a blob" j
+    let of_json j = blob_of_json ~kind:"a blob" j
     let to_json = simple_to_json to_value
   end
 module Messages =
@@ -7233,7 +7233,7 @@ module Body =
     let to_query v = to_query to_value v
     let to_header x = x
     let of_xml xml_arg0 = string_of_xml ~kind:"a blob" xml_arg0
-    let of_json j = string_of_json ~kind:"a blob" j
+    let of_json j = blob_of_json ~kind:"a blob" j
     let to_json = simple_to_json to_value
   end
 module ContentBlockDelta =

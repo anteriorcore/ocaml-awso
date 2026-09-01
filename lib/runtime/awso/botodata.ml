@@ -459,7 +459,8 @@ end = struct
       try `Int (Stdlib.Int64.to_int l) with
       | Failure _ -> `Intlit (Stdlib.Int64.to_string l))
     | `Float f | `Double f -> `Float f
-    | `Blob s | `String s | `Timestamp s | `Enum s -> `String s
+    | `Blob s -> `String (Base64.encode_string s)
+    | `String s | `Timestamp s | `Enum s -> `String s
     | `Structure fields -> structure_to_json fields
     | `List xs -> list_to_json xs
     | `Map xs -> map_to_json xs

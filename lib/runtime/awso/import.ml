@@ -268,6 +268,14 @@ let string_of_xml ~kind = function
   | _ -> failwithf "Expected pcdata representing %s" kind ()
 ;;
 
+let blob_of_json ~kind = function
+  | `String enc -> (
+    match Base64.decode enc with
+    | Ok msg -> msg
+    | Error (`Msg err) -> failwithf "Failed to base64 decode %s: %s" kind err ())
+  | _ -> failwithf "Expected string representing %s" kind ()
+;;
+
 let bool_of_json = function
   | `Bool b -> b
   | _ -> failwith "Expected a boolean"

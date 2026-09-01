@@ -77,6 +77,10 @@ val check_float_max : float -> max:float -> (unit, string) Result.t
     parsed). *)
 val string_of_xml : kind:string -> ('a Xmlm.frag as 'a) Xmlm.frag -> string
 
+(** Convert a JSON value to a bytestring (or fail with an exception mentioning the
+    [kind] of value being parsed, or base64 decode error if any). *)
+val blob_of_json : kind:string -> Yojson.Safe.t -> string
+
 (** Convert a JSON value to a boolean (or fail with an exception). *)
 val bool_of_json : Yojson.Safe.t -> bool
 

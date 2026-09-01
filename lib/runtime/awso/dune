@@ -1,7 +1,7 @@
 (library
  (name awso)
  (public_name awso)
- (libraries awso_common cohttp unix cryptokit xmlm yojson re.perl)
+ (libraries awso_common base64 cohttp unix cryptokit xmlm yojson re.perl)
  (ocamlopt_flags (-linscan))
  (preprocess
   ; botocore_endpoints is 4.4 MiB generated endpoint table, its AST is

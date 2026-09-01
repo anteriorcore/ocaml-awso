@@ -6541,7 +6541,7 @@ module Blob =
     let to_query v = to_query to_value v
     let to_header x = x
     let of_xml xml_arg0 = string_of_xml ~kind:"a blob" xml_arg0
-    let of_json j = string_of_json ~kind:"a blob" j
+    let of_json j = blob_of_json ~kind:"a blob" j
     let to_json = simple_to_json to_value
   end
 module CallbackFailedDetails =
@@ -10777,7 +10777,7 @@ module BinaryOperationPayload =
     let to_query v = to_query to_value v
     let to_header x = x
     let of_xml xml_arg0 = string_of_xml ~kind:"a blob" xml_arg0
-    let of_json j = string_of_json ~kind:"a blob" j
+    let of_json j = blob_of_json ~kind:"a blob" j
     let to_json = simple_to_json to_value
   end
 module NamespacedStatementId =
@@ -12517,7 +12517,7 @@ module BlobStream =
     let to_query v = to_query to_value v
     let to_header x = x
     let of_xml xml_arg0 = string_of_xml ~kind:"a blob" xml_arg0
-    let of_json j = string_of_json ~kind:"a blob" j
+    let of_json j = blob_of_json ~kind:"a blob" j
     let to_json = simple_to_json to_value
   end
 module DurableExecutionAlreadyStartedException =
