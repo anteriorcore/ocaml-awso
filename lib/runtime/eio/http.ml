@@ -51,9 +51,25 @@ module Io = struct
       match region with
       | Some r -> r
       | None -> failwith "config must set 'region'"
+    (* Hack to get per-service endpoint URL var.  The real solution would be
+       first-party support for generic per-service configuration in the Config
+       records. *)
+    and var_name =
+      service
+      |> Awso.Service.to_string
+      |> String.uppercase_ascii
+      |> String.substr_replace_all ~pattern:"-" ~with_:"_"
+    in
+    let endpoint_opt =
+      List.reduce_exn
+        ~f:Option.first_some
+        [ endpoint_url
+        ; aws_cfg.endpoint_url
+        ; Sys.getenv_opt ("AWS_ENDPOINT_URL_" ^ var_name)
+        ]
     in
     let endpoint =
-      match Option.first_some endpoint_url aws_cfg.endpoint_url with
+      match endpoint_opt with
       | Some s -> Uri.of_string s
       | None -> Awso.Botocore_endpoints.lookup_uri ~region service `HTTPS
     in
